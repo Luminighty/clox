@@ -1,0 +1,5 @@
+var abc = 123
+
+print 10.2 + abc
+
+print "Hello World"
