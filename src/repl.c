@@ -1,4 +1,6 @@
 #include "repl.h"
+#include "vm.h"
+
 #include <stdio.h>
 
 
@@ -13,7 +15,7 @@ void repl() {
 			break;
 		}
 
-		// interpret(line);
+		vm_interpret(line);
 	}
 
 }

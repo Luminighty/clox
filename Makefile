@@ -2,7 +2,7 @@ IDIR=./include
 TARGET=bin/main
 
 CC=gcc
-CFLAGS=-I./include -g
+CFLAGS=-I./include
 LDFLAGS=
 
 DEPS=$(wildcard $(IDIR)/*.h)
@@ -26,7 +26,7 @@ build/%.o: src/%.c $(DEPS)
 
 $(TARGET): $(OBJS)
 	mkdir -p bin
-	$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS) $(CFLAGS)
 
 
 clean:

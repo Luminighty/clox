@@ -1,6 +1,7 @@
 #include "scanner.h"
 #include <stdbool.h>
 #include <string.h>
+#include <stdio.h>
 
 typedef struct {
 	const char* start;
@@ -73,14 +74,15 @@ static void skip_whitespace() {
 			break;
 		case '\n':
 			scanner.line++;
+
 			advance();
 			break;
 		case '/':
-			if (peek_next() == '/') {
-				while (peek() != '\n' && !is_end()) advance();
-			} else {
+			if (peek_next() != '/')
 				return;
-			}
+			while (peek() != '\n' && !is_end())
+				advance();
+			break;
 		default:
 			return;
 		}
