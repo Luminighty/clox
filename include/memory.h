@@ -17,8 +17,16 @@
 	reallocate(pointer, sizeof(type) * (count), 0);
 
 
-void* reallocate(void* pointer, size_t old_size, size_t new_size);
+#define FREE(type, pointer) \
+	reallocate(pointer, sizeof(type), 0)
 
+#define ALLOCATE(type, count) \
+	(type*)reallocate(NULL, 0, sizeof(type) * count)
+
+
+
+void* reallocate(void* pointer, size_t old_size, size_t new_size);
+void objects_free();
 
 
 #endif // clox_memory_h

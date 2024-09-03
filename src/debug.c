@@ -68,6 +68,16 @@ int disassemble_instruction(Chunk *chunk, int offset) {
 		return instruction_simple("OP_LESS", offset);
 	case OP_GREATER:
 		return instruction_simple("OP_GREATER", offset);
+	case OP_PRINT:
+		return instruction_simple("OP_PRINT", offset);
+	case OP_POP:
+		return instruction_simple("OP_POP", offset);
+	case OP_DEFINE_GLOBAL:
+		return instruction_constant("OP_DEFINE_GLOBAL", chunk, offset);
+	case OP_GET_GLOBAL:
+		return instruction_constant("OP_GET_GLOBAL", chunk, offset);
+	case OP_SET_GLOBAL:
+		return instruction_constant("OP_SET_GLOBAL", chunk, offset);
 	default:
 		printf("Unknown opcode %d\n", instruction);
 		return offset + 1;

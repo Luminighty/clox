@@ -3,10 +3,14 @@
 
 #include <stdbool.h>
 
+typedef struct Obj Obj;
+typedef struct ObjString ObjString;
+
 typedef enum {
 	VAL_NUMBER,
 	VAL_BOOL,
 	VAL_NIL,
+	VAL_OBJ,
 } ValueType;
 
 
@@ -15,6 +19,7 @@ typedef struct {
 	union {
 		double number;
 		bool boolean;
+		Obj* obj;
 	} as;
 } Value;
 
@@ -22,13 +27,16 @@ typedef struct {
 #define VALUE_BOOL(value) ((Value){VAL_BOOL, {.boolean = value}})
 #define VALUE_NIL ((Value){VAL_NIL, {.number = 0}})
 #define VALUE_NUMBER(value) ((Value){VAL_NUMBER, {.number = value}})
+#define VALUE_OBJECT(object) ((Value){VAL_OBJ, {.obj = (Obj*)object}})
 
 #define AS_BOOL(value) ((value).as.boolean)
 #define AS_NUMBER(value) ((value).as.number)
+#define AS_OBJECT(value) ((value).as.obj)
 
 #define IS_BOOL(value) ((value).type == VAL_BOOL)
 #define IS_NIL(value) ((value).type == VAL_NIL)
 #define IS_NUMBER(value) ((value).type == VAL_NUMBER)
+#define IS_OBJECT(value) ((value).type == VAL_OBJ)
 
 
 typedef struct {

@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdio.h>
 
 #include "file.h"
@@ -5,7 +6,6 @@
 #include "vm.h"
 
 int main(int argc, char* argv[]) {
-
 	vm_create();
 
 	if (argc == 1) {
